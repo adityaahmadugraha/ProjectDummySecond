@@ -8,8 +8,6 @@ import com.bumptech.glide.Glide
 
 class ProductsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductsBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductsBinding.inflate(layoutInflater)
@@ -19,19 +17,14 @@ class ProductsActivity : AppCompatActivity() {
         val thumbnail = intent.getStringExtra("thumbnail").toString()
 
 
-
         val imgProducts = binding.imgProducts
         Glide.with(this)
             .load(thumbnail)
-            .into(imgProducts);
-
-
+            .into(imgProducts)
 
         binding.btnProducts.setOnClickListener {
             val intent = Intent(this@ProductsActivity, MainActivity::class.java)
             startActivity(intent)
         }
     }
-
-
 }

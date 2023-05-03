@@ -13,8 +13,6 @@ class MainViewModel : ViewModel() {
     private val _products = MutableLiveData<List<Products>>()
     val products: LiveData<List<Products>> = _products
 
-
-
     init {
         getProducts()
     }
@@ -34,13 +32,10 @@ class MainViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<List<Products>>, t: Throwable) {
-
                 Log.d("Respons::::::::", t.message.toString())
             }
         })
     }
-
-
 }
 
 

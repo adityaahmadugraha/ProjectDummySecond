@@ -18,7 +18,6 @@ class AdapterProducts(
         val binding =
             ItemProductsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHOlder(binding)
-
     }
 
     override fun onBindViewHolder(holder: ViewHOlder, @SuppressLint("RecyclerView") position: Int) {
@@ -36,12 +35,8 @@ class AdapterProducts(
                 .error(android.R.color.darker_gray)
                 .into(binding.imgProducts)
             binding.txtTitle.text = data.title.toString()
-            binding.cardView.setOnClickListener {
-
-            }
         }
     }
-
 
     companion object {
         val DIF_CALLBACK: DiffUtil.ItemCallback<Products> =
@@ -54,7 +49,6 @@ class AdapterProducts(
                 override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
                     return oldItem == newItem
                 }
-
             }
     }
 }

@@ -11,5 +11,5 @@ data class Products(
     val brand: String?,
     val category: String?,
     val thumbnail: String?,
-    val images: Array<String>?
+    val images: List<String>?
 )
