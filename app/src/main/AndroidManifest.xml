@@ -16,9 +16,6 @@
         android:theme="@style/Theme.ProjectDummySecond"
         tools:targetApi="31">
         <activity
-            android:name=".ProductsActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

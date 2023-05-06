@@ -1,5 +1,6 @@
 package com.aditya.projectdummysecond.adapter
 
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,9 +11,9 @@ import com.aditya.projectdummysecond.data.Products
 import com.aditya.projectdummysecond.databinding.ItemProductsBinding
 import com.bumptech.glide.Glide
 
-class AdapterProducts(
 
-) : ListAdapter<Products, AdapterProducts.ViewHOlder>(DIF_CALLBACK) {
+class AdapterProducts: ListAdapter<Products, AdapterProducts.ViewHOlder>(DIF_CALLBACK) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHOlder {
         val binding =
@@ -29,13 +30,14 @@ class AdapterProducts(
         private val binding: ItemProductsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Products) {
-            binding.txtProducts.text = data.description.toString()
+            binding.txtProducts.text = data.title
             Glide.with(itemView.context)
                 .load(data.thumbnail)
                 .error(android.R.color.darker_gray)
                 .into(binding.imgProducts)
-            binding.txtTitle.text = data.title.toString()
+
         }
+
     }
 
     companion object {
@@ -52,3 +54,12 @@ class AdapterProducts(
             }
     }
 }
+
+
+
+
+
+
+
+
+

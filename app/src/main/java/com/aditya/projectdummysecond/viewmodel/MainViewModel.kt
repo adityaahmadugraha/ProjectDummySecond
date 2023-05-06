@@ -5,23 +5,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aditya.projectdummysecond.api.ApiConfig
-import com.aditya.projectdummysecond.data.Products
+import com.aditya.projectdummysecond.data.ProductResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
+
 class MainViewModel : ViewModel() {
-    private val _products = MutableLiveData<List<Products>>()
-    val products: LiveData<List<Products>> = _products
+    private val _products = MutableLiveData<ProductResponse>()
+    val products: LiveData<ProductResponse> = _products
 
     init {
         getProducts()
     }
 
-    fun getProducts() {
+    private fun getProducts() {
 
         val client = ApiConfig.getApiService().getProducts()
-        client.enqueue(object : retrofit2.Callback<List<Products>> {
-            override fun onResponse(call: Call<List<Products>>, response: Response<List<Products>>) {
+        client.enqueue(object : Callback<ProductResponse> {
+            override fun onResponse(
+                call: Call<ProductResponse>,
+                response: Response<ProductResponse>
+            ) {
                 if (response.isSuccessful) {
 
                     val responseBody = response.body()
@@ -31,11 +36,9 @@ class MainViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<List<Products>>, t: Throwable) {
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
                 Log.d("Respons::::::::", t.message.toString())
             }
         })
     }
 }
-
-
