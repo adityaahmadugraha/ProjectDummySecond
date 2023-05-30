@@ -12,7 +12,9 @@ import com.aditya.projectdummysecond.databinding.ItemProductsBinding
 import com.bumptech.glide.Glide
 
 
-class AdapterProducts: ListAdapter<Products, AdapterProducts.ViewHOlder>(DIF_CALLBACK) {
+class AdapterProducts(
+    private val onclik: (Products) -> Unit
+) : ListAdapter<Products, AdapterProducts.ViewHOlder>(DIF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHOlder {
@@ -35,6 +37,9 @@ class AdapterProducts: ListAdapter<Products, AdapterProducts.ViewHOlder>(DIF_CAL
                 .load(data.thumbnail)
                 .error(android.R.color.darker_gray)
                 .into(binding.imgProducts)
+            binding.cardView.setOnClickListener {
+                onclik(data)
+            }
 
         }
 
