@@ -15,12 +15,15 @@ class MainViewModel : ViewModel() {
     private val _products = MutableLiveData<ProductResponse>()
     val products: LiveData<ProductResponse> = _products
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     init {
         getProducts()
     }
 
     private fun getProducts() {
-
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getProducts()
         client.enqueue(object : Callback<ProductResponse> {
             override fun onResponse(
@@ -28,7 +31,7 @@ class MainViewModel : ViewModel() {
                 response: Response<ProductResponse>
             ) {
                 if (response.isSuccessful) {
-
+                    _isLoading.value = false
                     val responseBody = response.body()
                     if (responseBody != null) {
                         _products.value = responseBody
@@ -37,6 +40,7 @@ class MainViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+               _isLoading.value = false
                 Log.d("Respons::::::::", t.message.toString())
             }
         })
