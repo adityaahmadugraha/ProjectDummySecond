@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     private fun getData() {
         viewModel.products.observe(this@MainActivity) { listProducts ->
             mAdapter.submitList(listProducts.products)
-            binding.rvProducts.apply {
+            binding.recyclerProduk.apply {
                 adapter = mAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
                 setHasFixedSize(true)
